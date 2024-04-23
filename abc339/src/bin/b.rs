@@ -11,7 +11,7 @@ fn main() {
 
     let mut current = (0, 0);
     let mut direction = 0;
-    for i in 0..n {
+    for _ in 0..n {
         if grid[current.0][current.1] == '.'{
             grid[current.0][current.1] = '#';
             direction += 1;
