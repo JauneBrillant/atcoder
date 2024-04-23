@@ -6,13 +6,10 @@ fn main() {
     }
 
     let binary_string = format!("{:b}", n);
-    let mut res = 0;
-    for c in binary_string.chars().rev() {
-        if c != '0' {
-            break;
-        }
-        res += 1;
-    }
+    let res = binary_string.chars()
+        .rev()
+        .take_while(|&c| c == '0')
+        .count();
 
     println!("{}", res);
 }
