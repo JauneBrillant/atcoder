@@ -5,12 +5,6 @@ fn main() {
         s: String,
     }
 
-    let mut index = 0;
-    for (i, c) in s.chars().enumerate() {
-        if c == '.' {
-            index = i;
-        }
-    }
-
-    println!("{}", &s[index + 1..])
+    let last_dot_index = s.rfind(|c: char| c == '.');
+    println!("{}", &s[last_dot_index.unwrap() + 1..])
 }
