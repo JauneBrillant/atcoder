@@ -5,10 +5,6 @@ fn main() {
         mut s: String,
     }
 
-    if let Some(last_char) = s.pop() {
-        if last_char != '4' {
-            s.push('4');
-        }
-    }
+    if let Some(_) = s.pop() { s.push('4') }
     println!("{}", s);
 }
