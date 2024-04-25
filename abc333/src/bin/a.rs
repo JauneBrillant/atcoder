@@ -4,8 +4,7 @@ fn main() {
     input! {
         n: usize,
     }
-    for _ in 0..n {
-        print!("{}", n);
-    }
-    println!();
+
+    let res: String = (0..n).map(|_| n.to_string()).collect();
+    println!("{}", res);
 }
