@@ -6,29 +6,26 @@ fn main() {
         n: usize,
     }
 
-    let repunit: [i64; 12] = [
-        1,
-        11,
-        111,
-        1111,
-        11111,
-        111111,
-        1111111,
-        11111111,
-        111111111,
-        1111111111,
-        11111111111,
-        111111111111,
-    ];
+    let repunit = generate_requnit();
 
     let mut tree_map = BTreeSet::new();
-    for i in repunit {
-        for j in repunit {
-            for k in repunit {
+    for i in &repunit {
+        for j in &repunit {
+            for k in &repunit {
                 tree_map.insert(i + j + k);
             }
         }
     }
 
     println!("{}", tree_map.iter().nth(n - 1).unwrap());
+}
+
+fn generate_requnit() -> Vec<i64> {
+    let mut requnit: Vec<i64> = Vec::new();
+    let mut value = 0;
+    for _ in 0..12 {
+        value = value * 10 + 1;
+        requnit.push(value);
+    }
+    requnit
 }
