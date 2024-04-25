@@ -3,18 +3,14 @@ use proconio::input;
 fn main() {
     input! {
         n: usize,
-        mut a: [usize; n],
+        a: [usize; n],
     }
 
-    a.sort();
-    let max = a[a.len() - 1];
-    let mut second_max = 0;
-    for i in (0..a.len()).rev() {
-        if max != a[i] {
-            second_max = a[i];
-            break;
-        }
-    }
+    println!("{}", find_second_max(&a).unwrap());
+}
 
-    println!("{}", second_max);
+fn find_second_max(a: &[usize]) -> Option<usize> {
+    let max = *a.iter().max().unwrap();
+    let filter_arr = a.iter().filter(|&v| *v != max);
+    filter_arr.max().copied()
 }
