@@ -10,21 +10,18 @@ fn main() {
     let mut glass = 0;
     let mut cup = 0;
     while k > 0 {
-        if glass == g {
-            glass = 0;
-        } else if cup == 0 {
-            cup = m;
-        } else {
-            // マグカップからグラスに水を移す
-            // グラスの残り容量 = グラスの最大容量 - 今のグラスの容量
-            let diff = g - glass;
-            if diff < cup {
-                glass += diff;
-                cup -= diff;
-            } else {
-                // 全て注ぐ時
-                glass += cup;
-                cup = 0;
+        match (glass == g, cup == 0) {
+            (true, _) => glass = 0,
+            (_, true) => cup = m,
+            _ => {
+                let glass_capacity = g - glass;
+                if glass_capacity >= cup {
+                    glass += cup;
+                    cup = 0;
+                } else {
+                    glass += glass_capacity;
+                    cup -= glass_capacity;
+                }
             }
         }
         k -= 1;
