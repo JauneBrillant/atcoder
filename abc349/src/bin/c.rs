@@ -12,14 +12,10 @@ fn main() {
 
 fn is_subarray(s: &str, t: &str) -> bool {
     let mut t_index = 0;
-    for c in s.chars() {
+    s.chars().any(|c| {
         if c == t.chars().nth(t_index).unwrap() {
             t_index += 1;
         }
-
-        if t_index == t.len() {
-            return true;
-        }
-    }
-    false
+        t_index == t.len()
+    })
 }
