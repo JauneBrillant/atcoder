@@ -3,15 +3,13 @@ use proconio::marker::Chars;
 
 fn main() {
     input! {
-        n: usize,
+        _n: usize,
         a: Chars,
     }
 
-    for i in 0..n - 1 {
-        if a[i] == 'a' && a[i + 1] == 'b' || a[i] == 'b' && a[i + 1] == 'a' {
-            println!("Yes");
-            return;
-        }
-    }
-    println!("No")
+    let res = a.windows(2).any(|pair| {
+        pair[0] == 'a' && pair[1] == 'b' || pair[0] == 'b' && pair[1] == 'a'
+    });
+
+    println!("{}", if res { "Yes" } else { "No" });
 }
