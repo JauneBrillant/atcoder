@@ -6,8 +6,8 @@ fn main() {
         b: [usize; 8],
     }
 
-    let a_total: usize = a.iter().sum();
-    let b_total: usize = b.iter().sum();
+    let a_total = a.iter().sum::<usize>();
+    let b_total = b.iter().sum::<usize>();
 
     println!("{}", a_total - b_total + 1);
 }
