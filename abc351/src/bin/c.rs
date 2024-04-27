@@ -6,23 +6,14 @@ fn main() {
         a: [i64; n],
     }
 
-    let mut res: Vec<i64> = vec![];
+    let mut arr: Vec<i64> = vec![];
     for num in a {
-        res.push(num);
-
-        loop {
-            if res.len() <= 1 {
-                break;
-            }
-
-            if res[res.len() - 1] != res[res.len() - 2] {
-                break;
-            }
-
-            let last = res.pop();
-            let _second_last = res.pop();
-            res.push(last.unwrap() + 1);
+        arr.push(num);
+        while arr.len() >= 2 && arr[arr.len() - 1] == arr[arr.len() - 2] {
+            arr.pop();
+            let last = arr.pop().unwrap();
+            arr.push(last + 1);
         }
     }
-    println!("{}", res.len());
+    println!("{}", arr.len());
 }
