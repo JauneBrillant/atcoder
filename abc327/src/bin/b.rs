@@ -5,8 +5,8 @@ fn main() {
         b: i64,
     }
 
-    if let Some(i) = (1..=15 as i64).find(|&v| v.pow(v as u32) == b) {
-        println!("{}", i);
+    if let Some(res) = (1..16 as i64).find(|&v| v.pow(v as u32) == b) {
+        println!("{}", res);
     } else {
         println!("{}", -1);
     }
