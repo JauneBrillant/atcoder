@@ -8,22 +8,18 @@ fn main() {
         t: String,
     }
 
-    if is_head(&s, &t) && is_tail(&s, &t) {
-        println!("0");
-    } else if is_head(&s, &t) && !is_tail(&s, &t) {
-        println!("1");
-    } else if !is_head(&s, &t) && is_tail(&s, &t) {
-        println!("2");
-    } else {
-        println!("3");
+    match (is_head(&s, &t), is_tail(&s, &t)) {
+        (true, true) => println!("0"),
+        (true, false) => println!("1"),
+        (false, true) => println!("2"),
+        _ => println!("3"),
     }
 }
 
 fn is_head(s: &str, t: &str) -> bool {
-    *s == t[0..s.len()]
+    t.starts_with(s)
 }
 
 fn is_tail(s: &str, t: &str) -> bool {
-    let l = t.len() - s.len();
-    t[l..] == *s
+    t.ends_with(s)
 }
