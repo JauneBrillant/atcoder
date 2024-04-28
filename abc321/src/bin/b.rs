@@ -4,26 +4,20 @@ fn main() {
     input! {
         n: usize,
         x: i32,
-        a: [i32; n - 1],
+        mut a: [i32; n - 1],
     }
 
-    let mut res = i32::MAX;
-    for i in 0..=100 {
-        let mut arr = a.clone();
-        arr.push(i);
+    let res = (0..=100)
+        .filter(|&i| {
+            a.push(i);
+            let total = a.iter().sum::<i32>();
+            let max = *a.iter().max().unwrap();
+            let min = *a.iter().min().unwrap();
+            a.pop();
+            total - (min + max) >= x
+        })
+        .min()
+        .unwrap_or(-1);
 
-        let total = arr.iter().sum::<i32>();
-        let min = *arr.iter().min().unwrap();
-        let max = *arr.iter().max().unwrap();
-
-        if total - (max + min) >= x {
-            res = res.min(i);
-        }
-    }
-
-    if res == i32::MAX {
-        println!("{}", -1)
-    } else {
-        println!("{}", res);
-    }
+    println!("{}", res);
 }
