@@ -6,12 +6,9 @@ fn main() {
         n: Chars,
     }
 
-    for i in 0..n.len() - 1 {
-        if n[i] <= n[i + 1] {
-            println!("No");
-            return;
-        }
+    if n.windows(2).any(|w| w[0] <= w[1]) {
+        println!("No");
+    } else {
+        println!("Yes");
     }
-
-    println!("Yes");
 }
