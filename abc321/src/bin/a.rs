@@ -22,9 +22,6 @@ fn main() {
     n /= 10;
     while n > 0 {
         let curr_digit = n % 10;
-
-        // println!("curr_digit = {} : prev_digit = {}", curr_digit, prev_digit);
-
         if curr_digit <= prev_digit {
             println!("No");
             return;
