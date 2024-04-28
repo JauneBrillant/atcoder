@@ -7,12 +7,10 @@ fn main() {
     }
 
     a.sort();
-    let mut res = 0;
-    for i in 0..n - 1 {
-        if a[i] + 1 != a[i + 1] {
-            res = a[i] + 1;
+    for window in a.windows(2) {
+        if window[1] - window[0] != 1 {
+            println!("{}", (window[0] + 1));
+            return;
         }
     }
-
-    println!("{}", res);
 }
