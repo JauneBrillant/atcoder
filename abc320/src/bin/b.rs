@@ -13,12 +13,11 @@ fn main() {
         }
     }
 
-    let mut res = usize::MIN;
-    for e in st {
-        if is_palindrome(e) {
-            res = res.max(e.len());
-        }
-    }
+    let res = st.iter()
+        .filter(|e| is_palindrome(e))
+        .map(|e| e.len())
+        .max()
+        .unwrap_or(0);
 
     println!("{}", res);
 }
