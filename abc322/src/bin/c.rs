@@ -8,21 +8,18 @@ fn main() {
     }
 
     let mut days = vec![false; n];
-    for day in a {
+    for day in &a {
         days[day - 1] = true;
     }
 
-    let mut ans = vec![0; n];
+    let mut ans = Vec::with_capacity(n);
     let mut cnt = 0;
-    for i in (0..n).rev() {
-        cnt += 1;
-        if days[i] {
-            cnt = 0;
-        }
-        ans[i] = cnt;
+    for &is_fire in days.iter().rev() {
+        cnt = if is_fire { 0 } else { cnt + 1 };
+        ans.push(cnt);
     }
 
-    for v in ans {
+    for v in ans.iter().rev() {
         println!("{}", v);
     }
 }
