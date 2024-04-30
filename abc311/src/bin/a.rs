@@ -1,5 +1,6 @@
 use proconio::input;
 use proconio::marker::Chars;
+use std::collections::HashSet;
 
 fn main() {
     input! {
@@ -7,17 +8,10 @@ fn main() {
         s: Chars,
     }
 
-    let mut cnt_a = false;
-    let mut cnt_b = false;
-    let mut cnt_c = false;
+    let mut st = HashSet::new();
     for (i, c) in s.iter().enumerate() {
-        match c {
-            'A' => cnt_a = true,
-            'B' => cnt_b = true,
-            'C' => cnt_c = true,
-            _ => (),
-        }
-        if cnt_a && cnt_b && cnt_c {
+        st.insert(c);
+        if st.len() == 3 {
             println!("{}", i + 1);
             return;
         }
