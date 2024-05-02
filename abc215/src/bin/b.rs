@@ -5,12 +5,8 @@ fn main() {
         n: usize,
     }
 
-    let mut res = 0;
-    for i in 0..60 {
-        if 2_usize.pow(i) <= n {
-            res = i;
-        }
-    }
+    let mut k = 0;
+    while (1 << k) <= n { k+= 1 }
 
-    println!("{}", res);
+    println!("{}", k - 1);
 }
