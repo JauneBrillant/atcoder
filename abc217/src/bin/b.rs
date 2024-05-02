@@ -8,11 +8,10 @@ fn main() {
         s3: String,
     }
 
-    let mut set = HashSet::new();
-    set.insert(format!("{}", "ABC"));
-    set.insert(format!("{}", "ARC"));
-    set.insert(format!("{}", "AGC"));
-    set.insert(format!("{}", "AHC"));
+    let mut set: HashSet<String> = vec!["ABC", "ARC", "AGC", "AHC"]
+        .into_iter()
+        .map(|s| s.to_string())
+        .collect();
 
     set.remove(&s1);
     set.remove(&s2);
