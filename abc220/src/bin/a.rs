@@ -2,16 +2,11 @@ use proconio::input;
 
 fn main() {
     input! {
-        a: usize,
-        b: usize,
-        c: usize,
+        a: f32,
+        b: f32,
+        c: f32,
     }
 
-    let mut res = -1;
-    for i in a..=b {
-        if i % c == 0 {
-            res = i as i32;
-        }
-    }
-    println!("{}", res);
+    let res = ((a / c).ceil()) as i32 * c as i32;
+    println!("{}", if res <= b as i32 { res } else { -1 });
 }
