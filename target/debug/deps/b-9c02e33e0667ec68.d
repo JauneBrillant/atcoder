@@ -1,0 +1,5 @@
+/Users/jaunebrillant/dev/atcoder/target/debug/deps/libb-9c02e33e0667ec68.rmeta: src/bin/b.rs
+
+/Users/jaunebrillant/dev/atcoder/target/debug/deps/b-9c02e33e0667ec68.d: src/bin/b.rs
+
+src/bin/b.rs:
