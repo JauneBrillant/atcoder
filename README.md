@@ -8,3 +8,7 @@
 ## custom sort
 
 - https://atcoder.jp/contests/abc219/tasks/abc219_c
+
+## 進数変換
+
+- https://atcoder.jp/contests/abc220/tasks/abc220_b
