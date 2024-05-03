@@ -9,7 +9,7 @@ fn main() {
         0..=39 => println!("{}", 40 - x),
         40..=69 => println!("{}", 70 - x),
         70..=89 => println!("{}", 90 - x),
-        90.. => println!("expert"),
-        _ => (),
+        90..=100 => println!("expert"),
+        _ => unreachable!(),
     }
 }
