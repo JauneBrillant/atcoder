@@ -9,6 +9,10 @@
 
 - https://atcoder.jp/contests/abc219/tasks/abc219_c
 
-## 進数変換
+## base conversion
 
 - https://atcoder.jp/contests/abc220/tasks/abc220_b
+
+## straightforward implementation
+
+- https://atcoder.jp/contests/abc222/tasks/abc222_c
