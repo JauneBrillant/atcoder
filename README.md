@@ -16,3 +16,7 @@
 ## straightforward implementation
 
 - https://atcoder.jp/contests/abc222/tasks/abc222_c
+
+## simulation
+
+- https://atcoder.jp/contests/abc223/tasks/abc223_c
