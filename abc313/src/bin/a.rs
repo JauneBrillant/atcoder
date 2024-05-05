@@ -3,7 +3,7 @@ use proconio::input;
 fn main() {
     input! {
         n: usize,
-        p: [i32; n],
+        p: [usize; n],
     }
 
     if n == 1 {
@@ -11,7 +11,10 @@ fn main() {
         return;
     }
 
-    let goal = p.iter().skip(1).max().unwrap() + 1;
-    let res = goal - p[0];
-    println!("{}", if p[0] < goal { res } else { 0 });
+    let max = *p.iter().skip(1).max().unwrap();
+    if p[0] > max {
+        println!("0");
+    } else {
+        println!("{}", max - p[0] + 1);
+    }
 }
