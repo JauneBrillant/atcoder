@@ -7,13 +7,9 @@ fn main() {
         x: usize,
     }
 
-    let mut times = vec![false; 24];
     if s < t {
-        (s..t).for_each(|h| times[h] = true);
+        println!("{}", if s <= x && x < t { "Yes" } else { "No" });
     } else {
-        (s..24).for_each(|h| times[h] = true);
-        (0..t).for_each(|h| times[h] = true);
+        println!("{}", if t <= x && x < s { "No" } else { "Yes" });
     }
-
-    println!("{}", if times[x] { "Yes" } else { "No" });
 }
