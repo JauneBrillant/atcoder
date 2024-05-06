@@ -12,6 +12,6 @@ fn main() {
         *map.entry(str).or_insert(0) += 1;
     }
 
-    let res = map.iter().max_by_key(|&(_, &v)| v).unwrap();
+    let res = map.iter().max_by_key(|&(_, v)| v).unwrap();
     println!("{}", res.0);
 }
