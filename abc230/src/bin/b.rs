@@ -6,12 +6,9 @@ fn main() {
     }
 
     let str = "oxxoxxoxxoxxoxxoxxoxxoxxoxxoxxoxxo";
-    for i in 0..3 {
-        if s == str[i..i + s.len()] {
-            println!("Yes");
-            return;
-        }
+    if str.contains(&s) {
+        println!("Yes")
+    } else {
+        println!("No");
     }
-
-    println!("No");
 }
