@@ -4,7 +4,7 @@ fn main() {
     input! {
         mut n: usize,
     }
- 
+
     let mut res = vec![];
     while n > 0 {
         if n % 2 == 0 {
