@@ -8,12 +8,13 @@ fn main() {
     }
 
     let mut res = 0;
-    let mut l = 0;
-    for r in 1..n {
-        while l < r && a[r] - a[l] > k {
-            l += 1;
+
+    let mut r = 1;
+    for l in 0..n - 1 {
+        while r < n && a[r] - a[l] <= k {
+            r += 1;
         }
-        res += r - l;
+        res += r - l - 1;
     }
 
     println!("{}", res);
