@@ -1,6 +1,5 @@
 use proconio::input;
 
-#[derive(Debug)]
 struct Card {
     a: usize,
     c: usize,
@@ -11,22 +10,21 @@ fn main() {
     input! {
         n: usize,
     }
-    
-    let mut acs = vec![];
-    for i in 0..n {
+
+    let mut ac = vec![];
+    for i in 1..=n {
         input! {
             ai: usize,
             ci: usize,
         }
-        let aci = Card {a: ai, c: ci, i: i + 1};
-        acs.push(aci);
+        ac.push(Card { a: ai, c: ci, i: i });
     }
-    
-    acs.sort_by_key(|aci| aci.c);
+
+    ac.sort_by_key(|card| card.c);
 
     let mut res = vec![];
     let mut v = 0;
-    for card in acs.iter() {
+    for card in ac {
         if card.a > v {
             v = card.a;
             res.push(card.i);
@@ -39,4 +37,3 @@ fn main() {
         print!("{} ", v);
     }
 }
-
