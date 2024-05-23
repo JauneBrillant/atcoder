@@ -1,0 +1,13 @@
+[package]
+name = "abc240"
+version = "0.1.0"
+edition = "2021"
+
+# dependencies added to new project
+[dependencies]
+proconio = "*"
+cached = "0.27.0"
+
+[profile.release]
+lto = true
+panic = 'abort'
