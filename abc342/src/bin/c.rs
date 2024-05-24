@@ -1,5 +1,4 @@
 use proconio::{input, marker::Chars};
-use std::collections::HashMap;
 
 fn main() {
     input! {
