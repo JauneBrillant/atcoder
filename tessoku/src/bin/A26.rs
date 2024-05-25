@@ -6,25 +6,30 @@ fn main() {
         x: [usize; n],
     }
 
-    for i in 0..n {
-        if is_prime(x[i]) {
+    let max_val = *x.iter().max().unwrap();
+    let mut eratosthenes = vec![true; max_val + 1];
+    eratosthenes[0] = false;
+    eratosthenes[1] = false;
+
+    for i in 2.. {
+        if i * i > max_val {
+            break;
+        }
+
+        if eratosthenes[i] {
+            let mut curr = i;
+            while curr + i <= max_val {
+                curr += i;
+                eratosthenes[curr] = false;
+            }
+        }
+    }
+
+    for &xi in x.iter() {
+        if eratosthenes[xi] {
             println!("Yes");
         } else {
             println!("No");
         }
     }
-}
-
-fn is_prime(x: usize) -> bool {
-    for i in 2.. {
-        if i * i > x {
-            break;
-        }
-
-        if x % i == 0 {
-            return false;
-        }
-    }
-
-    true
 }
