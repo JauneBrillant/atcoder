@@ -1,5 +1,5 @@
 use proconio::input;
-use std::collections::BTreeMap;
+use std::{cmp::Reverse, collections::BinaryHeap};
 
 fn main() {
     input! {
@@ -7,7 +7,7 @@ fn main() {
     }
 
     let mut total_b = 0;
-    let mut tr_map = BTreeMap::new();
+    let mut heap = BinaryHeap::new();
 
     for _ in 0..q {
         input! {
@@ -19,8 +19,7 @@ fn main() {
                 input! {
                     mut x: i64,
                 }
-                x -= total_b;
-                *tr_map.entry(x).or_insert(0) += 1
+                heap.push(Reverse(x - total_b))
             }
             2 => {
                 input! {
@@ -29,13 +28,8 @@ fn main() {
                 total_b += x;
             }
             3 => {
-                if let Some((&k, &v)) = tr_map.iter().next() {
-                    println!("{}", k + total_b);
-                    if v == 1 {
-                        tr_map.remove(&k);
-                    } else {
-                        *tr_map.entry(k).or_insert(0) -= 1;
-                    }
+                if let Some(Reverse(e)) = heap.pop() {
+                    println!("{:?}", e + total_b);
                 }
             }
             _ => (),
