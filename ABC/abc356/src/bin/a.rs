@@ -1,3 +1,4 @@
+use itertools::Itertools;
 use proconio::input;
 
 fn main() {
@@ -7,13 +8,8 @@ fn main() {
         r: usize,
     }
 
-    for i in 1..l {
-        print!("{} ", i);
-    }
-    for i in (l..=r).rev() {
-        print!("{} ", i);
-    }
-    for i in r + 1..=n {
-        print!("{} ", i);
-    }
+    let mut ans: Vec<usize> = (1..=n).collect();
+    ans[l - 1..r].reverse();
+
+    println!("{}", ans.iter().join(" "));
 }
