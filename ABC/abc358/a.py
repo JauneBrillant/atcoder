@@ -1,6 +1,1 @@
-s, t = input().split()
-
-if s == "AtCoder" and t == "Land":
-    print("Yes")
-else:
-    print("No")
+print("Yes" if input() == "AtCoder Land" else "No")

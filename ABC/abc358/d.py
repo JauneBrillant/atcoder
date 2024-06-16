@@ -2,8 +2,8 @@ n, m = map(int, input().split())
 a = list(map(int, input().split()))
 b = list(map(int, input().split()))
 
-a = sorted(a)
-b = sorted(b)
+a.sort()
+b.sort()
 
 i = 0
 j = 0
@@ -16,7 +16,4 @@ while i < n and j < m:
     else:
         i += 1
 
-if j == m:
-    print(ans)
-else:
-    print(-1)
+print(ans if j == m else -1)

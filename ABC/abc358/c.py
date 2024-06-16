@@ -1,19 +1,15 @@
-from itertools import combinations
-
 n, m = map(int, input().split())
-ss = []
-for _ in range(n):
-    ss.append(input())
+ss = [input() for _ in range(n)]
 
 ans = n
-for i in range(1, n + 1):
-    for subset in combinations(range(n), i):
-        st = set()
-        for idx in subset:
-            for j, c in enumerate(ss[idx]):
+for bit in range(1 << n):
+    st = set()
+    for i in range(n):
+        if bit & (1 << i):
+            for j, c in enumerate(ss[i]):
                 if c == "o":
                     st.add(j)
-        if len(st) == m:
-            ans = min(ans, len(subset))
+    if len(st) == m:
+        ans = min(ans, bin(bit).count("1"))
 
 print(ans)
