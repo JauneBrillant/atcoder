@@ -8,7 +8,7 @@ hashmap = defaultdict(list)
 for i in range(n):
     hashmap[a[i]].append(w[i])
 
-for key in hashmap:
+for key in hashmap.keys():
     hashmap[key].sort(reverse=True)
 
 ans = 0
