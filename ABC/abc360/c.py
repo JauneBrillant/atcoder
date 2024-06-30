@@ -1,19 +1,9 @@
-from collections import defaultdict
-
 n = int(input())
 a = list(map(int, input().split()))
 w = list(map(int, input().split()))
 
-hashmap = defaultdict(list)
+box = [0] * (n + 1)
 for i in range(n):
-    hashmap[a[i]].append(w[i])
+    box[a[i]] = max(box[a[i]], w[i])
 
-for key in hashmap.keys():
-    hashmap[key].sort(reverse=True)
-
-ans = 0
-for k, v in hashmap.items():
-    while len(v) > 1:
-        ans += v.pop()
-
-print(ans)
+print(sum(w) - sum(box))
