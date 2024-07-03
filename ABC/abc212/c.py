@@ -1,3 +1,5 @@
+from bisect import bisect
+
 n, m = map(int, input().split())
 a = list(map(int, input().split()))
 b = list(map(int, input().split()))
@@ -5,13 +7,12 @@ a.sort()
 b.sort()
 
 ans = 10**9
-i = 0
-j = 0
-while i < n and j < m:
-    ans = min(ans, abs(a[i] - b[j]))
-    if a[i] < b[j]:
-        i += 1
-    else:
-        j += 1
+for num in a:
+    idx = bisect(b, num)
+
+    if idx < m:
+        ans = min(ans, abs(num - b[idx]))
+    if idx > 0:
+        ans = min(ans, abs(num - b[idx - 1]))
 
 print(ans)
