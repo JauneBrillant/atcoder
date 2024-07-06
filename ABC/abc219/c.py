@@ -1,19 +1,12 @@
 x = input()
 n = int(input())
-
-hashmap = {}
-for i, c in enumerate(x):
-    hashmap[c] = chr(ord("a") + i)
+ss = [input() for _ in range(n)]
 
 
-ans = {}
-for i in range(n):
-    s = input()
-    sort_s = ""
-    for c in s:
-        sort_s += hashmap[c]
-    ans[sort_s] = s
+def substitute(s, hashmap):
+    return "".join(hashmap[c] for c in s)
 
-sorted_key = sorted(ans.keys())
-for key in sorted_key:
-    print(ans[key])
+
+hashmap = {c: chr(ord("a") + i) for i, c in enumerate(x)}
+for res in sorted(ss, key=lambda s: substitute(s, hashmap)):
+    print(res)
