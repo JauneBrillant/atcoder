@@ -6,12 +6,12 @@ a = list(map(int, input().split()))
 b = list(map(int, input().split()))
 c = list(map(int, input().split()))
 
-counts: DefaultDict[int, int] = defaultdict(int)
-for ci in c:
-    counts[b[ci - 1]] += 1
+cnt_a: DefaultDict[int, int] = defaultdict(int)
+for ai in a:
+    cnt_a[ai] += 1
+
 
 ans = 0
-for ai in a:
-    ans += counts[ai]
-
+for ci in c:
+    ans += cnt_a[b[ci - 1]]
 print(ans)
