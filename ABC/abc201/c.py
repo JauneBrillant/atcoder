@@ -1,19 +1,18 @@
 s = input()
 
+
+def is_ok(passwd):
+    for i, c in enumerate(s):
+        if c == "o" and str(i) not in passwd:
+            return False
+        if c == "x" and str(i) in passwd:
+            return False
+    return True
+
+
 ans = 0
-for i in range(10000):
-    ok = True
-    passwd = str(i).zfill(4)
-    for j, c in enumerate(s):
-        if c == "o":
-            if str(j) not in passwd:
-                ok = False
-                break
-        if c == "x":
-            if str(j) in passwd:
-                ok = False
-                break
-    if ok:
+for passwd in range(10000):
+    if is_ok(str(passwd).zfill(4)):
         ans += 1
 
 print(ans)
