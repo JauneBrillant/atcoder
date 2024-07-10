@@ -3,13 +3,14 @@ from typing import DefaultDict
 
 n = int(input())
 a = list(map(int, input().split()))
+a = [e % 200 for e in a]
 
-counts: DefaultDict[int, int] = defaultdict(int)
+hashmap: DefaultDict[int, int] = defaultdict(int)
 for e in a:
-    counts[e % 200] += 1
+    hashmap[e] += 1
 
 ans = 0
-for v in counts.values():
-    ans += v * (v - 1)
+for v in hashmap.values():
+    ans += v * (v - 1) // 2
 
-print(ans // 2)
+print(ans)
