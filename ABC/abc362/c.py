@@ -13,12 +13,9 @@ if curr_sum > 0:
 
 res = [num for num in l]
 for i in range(n):
-    if curr_sum - l[i] + r[i] < 0:
-        res[i] = r[i]
-        curr_sum += -l[i] + r[i]
-    else:
-        res[i] += abs(curr_sum)
-        break
+    add = min(0 - curr_sum, r[i] - l[i])
+    res[i] += add
+    curr_sum += add
 
 if sum(res) == 0:
     print("Yes")
