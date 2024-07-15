@@ -7,21 +7,17 @@ ab = []
 for _ in range(n):
     ai, bi = map(int, input().split())
     ab.append((ai, bi))
-memo = {}
 
+dp = [[False] * (x + 1) for _ in range(n + 1)]
+dp[0][0] = True
 
-def solve(i=0, pos=0):
-    if i == n:
-        return pos == x
+for i in range(1, n + 1):
+    for j in range(x + 1):
+        a, b = ab[i - 1]
+        if dp[i - 1][j]:
+            if j + a <= x:
+                dp[i][j + a] = True
+            if j + b <= x:
+                dp[i][j + b] = True
 
-    if (i, pos) in memo:
-        return memo[(i, pos)]
-
-    a, b = ab[i]
-    res = solve(i + 1, pos + a) or solve(i + 1, pos + b)
-    memo[(i, pos)] = res
-
-    return res
-
-
-print("Yes" if solve() else "No")
+print("Yes" if dp[n][x] else "No")
