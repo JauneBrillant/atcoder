@@ -1,3 +1,4 @@
 /abc*/target
+/abc*/.mypy_cache
 target
 MEMO.md
