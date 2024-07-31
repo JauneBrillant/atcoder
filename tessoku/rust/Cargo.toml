@@ -1,9 +1,0 @@
-[package]
-name = "tessoku"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-itertools = "0.13.0"
-num = "0.4.3"
-proconio = "0.4.5"
