@@ -2,4 +2,4 @@
 **/Cargo.toml
 **/Cargo.lock
 **/.mypy_cache/
-MEMO.md
+.python-version
