@@ -1,26 +1,70 @@
-n = int(input())
-s = list(input())
+# 貪欲法を考えるがムリな理由
 
-h = []
-for i in range(n):
-    if s[i] == "R":
-        h.append("P")
-    if s[i] == "S":
-        h.append("R")
-    if s[i] == "P":
-        h.append("S")
+# 青木くんの手: RRS
+# 高橋くんの手: PRS >> 最大勝利数 = 1
+# 一手目: 貪欲に勝てるので勝つ
+# 二手目: "P"で勝てるが一手前で"P"を出しているので"R"か"C"しか出せない。"C"を出すと負けるので"R"で引き分けにする
+# 三手目: "R"で勝てるが一手前で"R"を出しているので"P"か"C"しか出せない。"P"を出すと負けるので"S"で引き分けにする
 
+# 青木くんの手: RRS
+# 高橋くんの手: RPR >> 最大勝利数 = 2
+# 一手目を妥協することで最大勝利数が増える場合もある
 
-ans = 1
-for i in range(1, n):
-    if h[i] == h[i - 1]:
-        h[i] == "x"
+# 一手目に引き分けではなく勝っておくといいケースもある
 
-    if s[i] == "R" and h[i - 1] != "P":
-        ans += 1
-    elif s[i] == "S" and h[i - 1] != "R":
-        ans += 1
-    elif s[i] == "P" and h[i - 1] != "S":
-        ans += 1
+# 一手目を勝つ場合
+# 青木くんの手: RRSSPR
+# 高橋くんの手: PRSRSP >> 最大勝利数 = 4
 
-print(ans)
+# 一手目を引き分ける場合
+# 青木くんの手: RRSSPR
+# 高橋くんの手: RPRSPR >> 最大勝利数 = 2
+
+# その後の展開次第で今の妥協がどう変わるかわからない
+# なので全探索的なことがしたいが、O(3^N)になるので間に合わない
+# 全探索、つまりすべての組み合わせは、グー、チョキ、パーの３通りを"N"回の勝負すべで試すと、3通り * 3通り * 3通り * 3通り ... N で"O(3^N)となりムリ
+# 全探索的なことを法則化するDPで解く
+
+# DP[i][j]  | jラウンド目に手iを出した時の青木くんの最大勝利数
+# ラウンド  | 1 | 2 | 3 | 4 | 5 | 6 | ... N
+# 0: グー   | このラウンドでグーを出した時の青木くんの最大勝利数   |  |  |  |
+# 1: パー   | このラウンドでパーを出した時の青木くんの最大勝利数   |  |  |  |
+# 2: チョキ | このラウンドでチョキを出した時の青木くんの最大勝利数 |  |  |  |
+
+# / ------------------------------------------------------------------------------------/
+
+N = int(input())
+S = ["x"] + list(input())
+HAND = {"R": 0, "P": 1, "S": 2}
+ROCK, PAPER, SCISSORS = 0, 1, 2
+
+dp = [[0] * (N + 1) for _ in range(3)]
+
+for j in range(1, N + 1):
+    for i in range(3):
+        a, b = i, HAND[S[j]]
+        # 勝てる時: 前回のラウンドの、今回のラウンドの手でない２つの最大値 + 1
+        if (a - b + 3) % 3 == 1:
+            if a == ROCK:
+                dp[i][j] = max(dp[PAPER][j - 1], dp[SCISSORS][j - 1]) + 1
+            if a == PAPER:
+                dp[i][j] = max(dp[ROCK][j - 1], dp[SCISSORS][j - 1]) + 1
+            if a == SCISSORS:
+                dp[i][j] = max(dp[ROCK][j - 1], dp[PAPER][j - 1]) + 1
+
+        # 引き分け: 前回のラウンドの、今回のラウンドの手でない２つの最大値
+        elif a == b:
+            if a == ROCK:
+                dp[i][j] = max(dp[PAPER][j - 1], dp[SCISSORS][j - 1])
+            if a == PAPER:
+                dp[i][j] = max(dp[ROCK][j - 1], dp[SCISSORS][j - 1])
+            if a == SCISSORS:
+                dp[i][j] = max(dp[ROCK][j - 1], dp[PAPER][j - 1])
+
+            # dp[i][j] = max(dp[ROCK][j - 1], dp[PAPER][j - 1], dp[SCISSORS][j])
+
+        # 負け // あり得ないので-1を入れる
+        else:
+            dp[i][j] = -1
+
+print(max(dp[ROCK][N], dp[PAPER][N], dp[SCISSORS][N]))
