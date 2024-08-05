@@ -1,18 +1,17 @@
+from bisect import bisect_right
+
 n = int(input())
-
-events = []
+lr = []
+l = []
 for _ in range(n):
-    l, r = map(int, input().split())
-    events.append((l, 0))
-    events.append((r, 1))
+    left, right = map(int, input().split())
+    lr.append((left, right))
+    l.append(left)
+lr.sort()
+l.sort()
 
-events.sort()
+ans = 0
+for i, (_, r) in enumerate(lr):
+    ans += bisect_right(l, r) - i - 1
 
-ans, cnt = 0, 0
-for _, t in events:
-    if t == 0:
-        ans += cnt
-    else:
-        cnt += 1
-
-print(n * (n - 1) // 2 - ans)
+print(ans)
