@@ -1,8 +1,8 @@
-import bisect
+from bisect import bisect_left
 
-n, q = map(int, input().split())
-a = list(map(int, input().split()))
-a.sort()
-for _ in range(q):
+N, Q = map(int, input().split())
+A = list(map(int, input().split()))
+A.sort()
+for _ in range(Q):
     x = int(input())
-    print(n - bisect.bisect_left(a, x))
+    print(N - bisect_left(A, x))
