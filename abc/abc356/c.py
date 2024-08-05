@@ -1,31 +1,12 @@
 n, m, k = map(int, input().split())
-tests = [[] for _ in range(m)]
-results = []
-for i in range(m):
-    test = input().split()
-    c = int(test[0])
-    for j in range(c):
-        tests[i].append(test[1 + j])
-    results.append(test[-1])
+tests = [input().split()[1:] for _ in range(m)]
 
 ans = 0
 for bit in range(1 << n):
-    selected_right_key = set()
-    for i in range(n):
-        if bit & 1 << i:
-            selected_right_key.add(i + 1)
-
-    ok = True
-    for i, test in enumerate(tests):
-        right_key_cnt = sum(1 for key in test if int(key) in selected_right_key)
-
-        if results[i] == "o" and right_key_cnt < k:
-            ok = False
+    for *keys, res in tests:
+        right_key_cnt = sum(1 for key in keys if bit & 1 << int(key) - 1)
+        if (res == "o" and right_key_cnt < k) or res == "x" and right_key_cnt >= k:
             break
-        if results[i] == "x" and right_key_cnt >= k:
-            ok = False
-            break
-    if ok:
+    else:
         ans += 1
-
 print(ans)
