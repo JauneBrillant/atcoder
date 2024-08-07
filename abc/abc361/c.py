@@ -1,9 +1,9 @@
-n, k = map(int, input().split())
-a = list(map(int, input().split()))
-a.sort()
+N, K = map(int, input().split())
+A = list(map(int, input().split()))
+A.sort()
 
-ans = 10**9
-for i in range(k + 1):
-    ans = min(a[i + n - k - 1] - a[i], ans)
+ans = float("inf")
+for i in range(K + 1):
+    ans = min(ans, A[i + (N - K - 1)] - A[i])
 
 print(ans)
