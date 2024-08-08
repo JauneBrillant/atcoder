@@ -1,18 +1,20 @@
-TARGET = "chokudai"
-MOD = 10**9 + 7
+MOD = 10 ** 9 + 7
+S = input()
+T = "chokudai"
+N = len(S)
+M = len(T)
 
-s = input()
-n = len(s)
-m = len(TARGET)
-
-dp = [[0] * (n + 1) for _ in range(m + 1)]
-for i in range(n + 1):
+# dp[i][j] := Sのj文字目までを"chokudai"のi文字目までで何通り作れるか
+dp = [[0] * (N + 1) for _ in range(M + 1)]
+for i in range(N + 1):
     dp[0][i] = 1
 
-for i in range(1, m + 1):
-    for j in range(1, n + 1):
-        dp[i][j] += dp[i][j - 1]
-        if TARGET[i - 1] == s[j - 1]:
-            dp[i][j] += dp[i - 1][j - 1]
+for i in range(1, M + 1):
+    for j in range(1, N + 1):
+        if T[i - 1] == S[j - 1]:
+            dp[i][j] = (dp[i][j - 1] + dp[i - 1][j - 1]) % MOD
+        else:
+            dp[i][j] = dp[i][j - 1]
 
-print(dp[m][n] % MOD)
+print(dp[M][N])
+        
