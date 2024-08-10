@@ -1,3 +1,5 @@
+# https://atcoder.jp/contests/arc031/tasks/arc031_2
+
 from copy import deepcopy
 
 H, W = 10, 10
