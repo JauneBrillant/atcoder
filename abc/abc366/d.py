@@ -1,5 +1,3 @@
-from tabulate import tabulate
-
 N = int(input())
 A = [[[0] * (N + 2) for _ in range(N + 2)] for _ in range(N + 2)]
 for i in range(1, N + 1):
@@ -24,7 +22,6 @@ for i in range(1, N + 1):
             A[i][j][k] += A[i][j][k - 1]
 
 
-print(tabulate(A))
 for _ in range(Q):
     lx, rx, ly, ry, lz, rz = map(int, input().split())
     ans = (
