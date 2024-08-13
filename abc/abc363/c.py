@@ -1,35 +1,21 @@
-import itertools
-import math
+from itertools import permutations
+from math import factorial
 
-n, k = map(int, input().split())
-s = list(input())
+N, K = map(int, input().split())
+S = input()
 
-if len(set(s)) == n:
-    print(math.factorial(n))
+if len(set(S)) == N:
+    print(factorial(N))
     exit()
 
-
-def is_palindrome(arr):
-    l = 0
-    r = len(arr) - 1
-    while l < r:
-        if arr[l] != arr[r]:
-            return False
-        l += 1
-        r -= 1
-    return True
-
-
-permutations = set(itertools.permutations(s))
 ans = 0
-for perm in permutations:
-    ok = True
-    for i in range(n - k + 1):
-        if is_palindrome(perm[i : i + k]):
-            ok = False
+for perm in set(permutations(S)):
+    for i in range(N - K + 1):
+        substr = perm[i : i + K]
+        rev = substr[::-1]
+        if substr == rev:
             break
-    if ok:
+    else:
         ans += 1
-
 
 print(ans)
