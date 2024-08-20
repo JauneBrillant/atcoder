@@ -1,23 +1,15 @@
-from collections import deque
-import heapq
+from sortedcontainers import SortedSet
 
-Q = int(input())
-
-deq = deque()
-heap = []
+L, Q = map(int, input().split())
+st = SortedSet()
+st.add(0)
+st.add(L)
 
 for _ in range(Q):
-    query = list(map(int, input().split()))
-    type = query[0]
-    match type:
+    c, x = map(int, input().split())
+    match c:
         case 1:
-            x = query[1]
-            deq.append(x)
+            st.add(x)
         case 2:
-            if len(heap) > 0:
-                print(heapq.heappop(heap))
-            else:
-                print(deq.popleft())
-        case 3:
-            while deq:
-                heapq.heappush(heap, deq.pop())
+            i = st.bisect(x)
+            print(st[i] - st[i - 1])
