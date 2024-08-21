@@ -1,35 +1,33 @@
-import heapq
+from heapq import heapify, heappush, heappop
 
 N, M = map(int, input().split())
-graph = [[] for _ in range(N)]
+G = [[] for _ in range(N)]
 in_degree = [0] * N
 for _ in range(M):
-    a, b = map(int, input().split())
-    a -= 1
-    b -= 1
-    graph[a].append(b)
-    in_degree[b] += 1
+    u, v = map(lambda x: int(x) - 1, input().split())
+    G[u].append(v)
+    in_degree[v] += 1
 
 
 def topological_sort():
     res = []
     heap = [i for i in range(N) if in_degree[i] == 0]
-    heapq.heapify(heap)
+    heapify(heap)
 
     while heap:
-        v = heapq.heappop(heap)
-        res.append(v + 1)
+        u = heappop(heap)
+        res.append(u + 1)
 
-        for nv in graph[v]:
-            in_degree[nv] -= 1
-            if in_degree[nv] == 0:
-                heapq.heappush(heap, nv)
+        for v in G[u]:
+            in_degree[v] -= 1
+            if in_degree[v] == 0:
+                heappush(heap, v)
 
     return res if len(res) == N else -1
 
 
-ans = topological_sort()
-if ans == -1:
+res = topological_sort()
+if res == -1:
     print(-1)
 else:
-    print(*ans)
+    print(*res)
